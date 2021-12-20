@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senate</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body class="container-fluid page_margin">
+    <header class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <img class="logo" src="./assets/tgif_logo.jpg" alt="abstract_usa_flag">
+            </div>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <a href="mailto:info@tgif.net">✉info@tgif.net</a>
+            </div>
+        </div>
+        <nav
+            class="d-flex flex-row bd-highlight mb-3 container-fluid bg-secondary px-2 text-dark bg-opacity-25 border border-dark">
+            <a href="index.html" class="d-flex p-2 bd-highlight align-items-center">Home</a>
+            <div class="dropdown p-2 bd-highlight">
+                <button class="btn dropdown-toggle bg-secondary bg-opacity-50" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Congress 113
+                </button>
+                <ul class="dropdown-menu border border-dark" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="house-data.html">House</a></li>
+                    <li><a class="dropdown-item  bg-secondary px-2 text-dark bg-opacity-50"
+                            href="senate-data.html">Senate</a></li>
+                </ul>
+            </div>
+            <div class="dropdown p-2 bd-highlight">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Attendance
+                </button>
+                <ul class="dropdown-menu border border-dark" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="house-attendance.html">House</a></li>
+                    <li><a class="dropdown-item" href="senate-attendance.html">Senate</a></li>
+                </ul>
+            </div>
+            <div class="dropdown p-2 bd-highlight">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Party Loyalty
+                </button>
+                <ul class="dropdown-menu border border-dark" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="house-party-loyalty.html">House</a></li>
+                    <li><a class="dropdown-item" href="senate-party-loyalty.html">Senate</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div id="app">
+        <main class="container-fluid">
+            <div class="d-flex flex-column col-9 my-5">
+                <h1>Senators</h1>
+                <p>First convened in 1789, the composition and powers of the Senate are established in Article One of
+                    the
+                    U.S. Constitution. Each state is represented by two senators, regardless of population, who serve
+                    staggered six-year terms. The Senate has several exclusive powers not granted to the House,
+                    including
+                    consenting to treaties as a precondition to their ratification and consenting to or confirming
+                    appointments of Cabinet secretaries, federal judges, other federal executive officials, military
+                    officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial
+                    of
+                    federal officials impeached by the House.
+                </p>
+            </div>
+            <table id="senate_table" class="container-fluid table table-striped">
+                <thead>
+                    <th class="name_data_table">Name</th>
+                    <th>
+                        Party
+                        <label for="democrat">D</label>
+                        <input v-model="partys" type="checkbox" id="democrat" name="party" value="D">
+                        <label for="republican">R</label>
+                        <input v-model="partys" type="checkbox" id="republican" name="party" value="R">
+                        <label for="independent">ID</label>
+                        <input v-model="partys" type="checkbox" id="independent" name="party" value="ID">
+                    </th>
+                    <th>
+                        <label for="states">States</label>
+                        <select v-model="state" name="states" id="states">
+                            <option value="">All States</option>
+                            <option :value="state" v-for="state in filtred_states">{{state}}</option>
+                        </select>
+                    </th>
+                    <th>Years in office</th>
+                    <th>% Votes w/party</th>
+                </thead>
+                <tbody id="senate-data">
+                    <tr v-for="member in filterMembers">
+                        <td> {{member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                        <td> {{member.party}} </td>
+                        <td> {{member.state}} </td>
+                        <td> {{member.seniority}} </td>
+                        <td> {{member.votes_with_party_pct}}% </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+    <footer
+        class="d-flex container-fluid bg-secondary p-2 mt-4 text-dark bg-opacity-25 border border-dark justify-content-center align-items-center">
+        <p class="mb-0 p-2">&copy; 2016 TGIF | All Rights Reserved</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./scripts/app.js"></script>
+</body>
+
+</html>
